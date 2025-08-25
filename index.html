@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fermaths — Hands‑on Math Toy</title>
+  <meta name="description" content="Fermaths is a hands‑on, screen‑free toy that makes math fun for young children—like a Bop It, but for numbers and patterns." />
+  <meta property="og:title" content="Fermaths — Hands‑on Math Toy" />
+  <meta property="og:description" content="Screen‑free, movement‑first math play for kids." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/fermths_og.png" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='60' font-size='60' text-anchor='middle'>∑</text></svg>">
+  <style>
+    :root{
+      --bg: #0f172a;        /* slate-900 */
+      --card:#111827;       /* gray-900 */
+      --muted:#94a3b8;      /* slate-400 */
+      --text:#e5e7eb;       /* gray-200 */
+      --brand:#38bdf8;      /* sky-400 */
+      --accent:#a78bfa;     /* violet-400 */
+      --ok:#22c55e;         /* green-500 */
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,"Apple Color Emoji","Segoe UI Emoji";}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:linear-gradient(to bottom, rgba(15,23,42,.95), rgba(15,23,42,.6));border-bottom:1px solid rgba(255,255,255,.06);z-index:10}
+    .container{max-width:1100px;margin:auto;padding:0 20px}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .nav a.logo{display:flex;gap:10px;align-items:center;font-weight:700;color:var(--text)}
+    .nav .links{display:flex;gap:20px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));box-shadow:0 10px 30px rgba(0,0,0,.3);color:var(--text)}
+    .btn:hover{transform:translateY(-1px);}
+    .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;padding:64px 0 40px}
+    .badge{display:inline-flex;gap:8px;align-items:center;font-size:12px;padding:6px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:var(--muted)}
+    h1{font-size:clamp(34px, 4vw, 54px);line-height:1.05;margin:14px 0 12px}
+    p.lead{font-size:clamp(16px, 2.1vw, 20px);color:var(--muted);max-width:60ch}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    section{padding:54px 0}
+    h2{font-size:clamp(24px,2.6vw,32px);margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .footer{border-top:1px solid rgba(255,255,255,.08);padding:28px 0;color:var(--muted)}
+    .stack{display:flex;flex-direction:column;gap:10px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.35);color:#e9d5ff;font-size:12px}
+    .contact-card{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr;}
+      .grid-3{grid-template-columns:1fr;}
+      .gallery{grid-template-columns:1fr;}
+      .contact-card{grid-template-columns:1fr;}
+    }
+    /* Simple floaty animation for SVG devices */
+    .floaty{animation:floaty 6s ease-in-out infinite}
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="container nav" aria-label="Primary">
+      <a class="logo" href="#home" aria-label="Fermaths home">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect x="2" y="6" width="44" height="28" rx="14" fill="url(#g)" stroke="rgba(255,255,255,.35)"/>
+          <circle cx="18" cy="20" r="5" fill="#0ea5e9"/>
+          <circle cx="30" cy="20" r="5" fill="#a78bfa"/>
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="48" y2="48">
+              <stop stop-color="#0b1220"/>
+              <stop offset="1" stop-color="#151a2b"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        Fermaths
+      </a>
+      <div class="links">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact" class="btn" aria-label="Go to contact page">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="container">
+    <section class="hero">
+      <div>
+        <span class="badge" aria-hidden="true">Screen‑free • Movement‑first • Ages 5+</span>
+        <h1>Math that kids can <em>grab</em>, twist, and shout 🎉</h1>
+        <p class="lead">Fermaths is a hands‑on toy that turns arithmetic into quick, playful actions. Think of it like a classic call‑and‑response game—but focused on numbers, patterns, and problem solving. No screens. Just fun.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn" style="border-color:rgba(56,189,248,.5)">Get in touch</a>
+          <a href="#how" class="btn" style="border-color:rgba(167,139,250,.5)">How it works</a>
+        </div>
+      </div>
+      <div class="card" aria-label="Device mockup">
+        <!-- Simple inline SVG mockup of the device -->
+        <svg class="floaty" viewBox="0 0 760 420" width="100%" role="img" aria-label="Illustration of the Fermaths toy">
+          <defs>
+            <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0b1220"/>
+              <stop offset="1" stop-color="#1f2937"/>
+            </linearGradient>
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.4"/>
+            </filter>
+          </defs>
+          <g filter="url(#shadow)">
+            <rect x="50" y="60" rx="80" ry="80" width="660" height="260" fill="url(#body)" stroke="rgba(255,255,255,.15)" stroke-width="3"/>
+            <!-- Grips -->
+            <circle cx="120" cy="190" r="46" fill="#0ea5e9" />
+            <circle cx="640" cy="190" r="46" fill="#a78bfa" />
+            <!-- Action buttons -->
+            <circle cx="300" cy="160" r="22" fill="#22c55e" />
+            <circle cx="360" cy="220" r="22" fill="#f59e0b" />
+            <circle cx="420" cy="160" r="22" fill="#ef4444" />
+            <!-- Speaker holes -->
+            <g fill="#111827" opacity=".8">
+              <circle cx="540" cy="150" r="4"/><circle cx="556" cy="150" r="4"/><circle cx="572" cy="150" r="4"/>
+              <circle cx="540" cy="166" r="4"/><circle cx="556" cy="166" r="4"/><circle cx="572" cy="166" r="4"/>
+            </g>
+            <!-- Label -->
+            <rect x="290" y="270" width="180" height="34" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)"/>
+            <text x="380" y="293" text-anchor="middle" fill="#e5e7eb" font-size="18" font-weight="600">Fermaths</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how">
+      <div class="grid-3">
+        <div class="card stack">
+          <span class="pill">1 • Listen</span>
+          <h2>Hear a math prompt</h2>
+          <p class="muted">"Add 3!" "Find the even number!" Fermaths calls out playful challenges appropriate to the level you set.</p>
+        </div>
+        <div class="card stack">
+          <span class="pill">2 • Move</span>
+          <h2>React with actions</h2>
+          <p class="muted">Twist, tap, press, or hold! Physical actions map to answers, keeping little hands busy and brains engaged.</p>
+        </div>
+        <div class="card stack">
+          <span class="pill">3 • Learn</span>
+          <h2>Build number sense</h2>
+          <p class="muted">Short rounds, instant feedback, and joyful sounds create sticky learning moments—without screens.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <h2>Why families & educators love Fermaths</h2>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card">
+          <h3>Screen‑free</h3>
+          <p class="muted">Delightfully analog. Encourages focus, movement, and social play.</p>
+        </div>
+        <div class="card">
+          <h3>Level‑based</h3>
+          <p class="muted">From counting to quick arithmetic and patterns—grow at your pace.</p>
+        </div>
+        <div class="card">
+          <h3>Durable</h3>
+          <p class="muted">Built for classrooms and living rooms alike with robust components.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery (device images / mockups) -->
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <p class="muted">A few concept mockups of the device while we finalize the industrial design.</p>
+      <div class="gallery" aria-label="Device image gallery">
+        <figure class="card">
+          <svg viewBox="0 0 760 420" width="100%" aria-label="Fermaths device front view" class="floaty">
+            <use href="#device-front" />
+          </svg>
+          <figcaption class="muted">Front view</figcaption>
+        </figure>
+        <figure class="card">
+          <svg viewBox="0 0 760 420" width="100%" aria-label="Fermaths device angled view" class="floaty" style="animation-duration:7s">
+            <use href="#device-angled" />
+          </svg>
+          <figcaption class="muted">Angled view</figcaption>
+        </figure>
+        <figure class="card">
+          <svg viewBox="0 0 760 420" width="100%" aria-label="Fermaths device in a child's hands" class="floaty" style="animation-duration:5.5s">
+            <use href="#device-hands" />
+          </svg>
+          <figcaption class="muted">In small hands</figcaption>
+        </figure>
+      </div>
+
+      <!-- SVG symbol defs so we can reuse shapes -->
+      <svg class="sr-only" aria-hidden="true">
+        <symbol id="shell">
+          <defs>
+            <linearGradient id="body2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0b1220"/>
+              <stop offset="1" stop-color="#1f2937"/>
+            </linearGradient>
+          </defs>
+          <rect x="50" y="60" rx="80" ry="80" width="660" height="260" fill="url(#body2)" stroke="rgba(255,255,255,.15)" stroke-width="3"/>
+          <circle cx="120" cy="190" r="46" fill="#0ea5e9" />
+          <circle cx="640" cy="190" r="46" fill="#a78bfa" />
+          <circle cx="300" cy="160" r="22" fill="#22c55e" />
+          <circle cx="360" cy="220" r="22" fill="#f59e0b" />
+          <circle cx="420" cy="160" r="22" fill="#ef4444" />
+        </symbol>
+        <symbol id="device-front" viewBox="0 0 760 420">
+          <use href="#shell" />
+          <rect x="290" y="270" width="180" height="34" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)"/>
+          <text x="380" y="293" text-anchor="middle" fill="#e5e7eb" font-size="18" font-weight="600">Fermaths</text>
+        </symbol>
+        <symbol id="device-angled" viewBox="0 0 760 420">
+          <g transform="skewX(-8) translate(-30, 0)">
+            <use href="#shell" />
+            <rect x="290" y="270" width="180" height="34" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)"/>
+            <text x="380" y="293" text-anchor="middle" fill="#e5e7eb" font-size="18" font-weight="600">Fermaths</text>
+          </g>
+        </symbol>
+        <symbol id="device-hands" viewBox="0 0 760 420">
+          <use href="#shell" />
+          <!-- Simple hands -->
+          <g opacity=".9">
+            <ellipse cx="120" cy="250" rx="60" ry="28" fill="#f4a261"/>
+            <ellipse cx="640" cy="250" rx="60" ry="28" fill="#f4a261"/>
+          </g>
+        </symbol>
+      </svg>
+    </section>
+
+    <!-- Contact (acts as a dedicated contact page/section) -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="card">
+        <h2 id="contact-heading">Contact</h2>
+        <p class="muted">Questions, partnerships, or early access? Reach out—we'd love to hear from you.</p>
+        <div class="contact-card">
+          <div class="stack">
+            <h3>Email</h3>
+            <p><a href="mailto:opotek.fermaths@protonmail.com">opotek.fermaths@protonmail.com</a></p>
+            <h3>Phone</h3>
+            <p><a href="tel:+34646617993">(+34) 646 617 993</a></p>
+          </div>
+          <form class="stack" onsubmit="event.preventDefault(); alert('Thanks! We\'ll be in touch shortly.');" aria-label="Quick contact form">
+            <label>
+              <span class="sr-only">Your email</span>
+              <input required type="email" name="email" placeholder="your@email.com" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:#0b1020;color:var(--text)"/>
+            </label>
+            <label>
+              <span class="sr-only">Your message</span>
+              <textarea required name="message" placeholder="Hello! I'd like to learn more…" rows="4" style="width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:#0b1020;color:var(--text)"></textarea>
+            </label>
+            <button class="btn" type="submit" aria-label="Send message">Send message</button>
+            <p class="muted" style="font-size:12px">We use your details only to contact you back. No spam, ever.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <span>© <span id="y"></span> Fermaths</span>
+      <span class="muted">Made for playful math learning</span>
+    </div>
+  </footer>
+
+  <script>
+    // Set year
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1){
+          const el = document.querySelector(id);
+          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        }
+      })
+    })
+  </script>
+</body>
+</html>
